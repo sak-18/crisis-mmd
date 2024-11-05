@@ -1,0 +1,10 @@
+.DS_Store
+*/.DS_Store
+__pycache__/
+model/
+env/
+data_image/
+data_dump/
+misc/
+static/data_image/
+static/data_image_wrong/

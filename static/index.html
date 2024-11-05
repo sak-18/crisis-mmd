@@ -1,0 +1,484 @@
+
+
+{% extends "base.html" %} {% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+           <div class="row preview-holder ">
+                
+              <div class="col-xs-6" style="margin-left: -20px;">
+                <h4 style="font-size: 1.1rem;">
+        <span style="color: white;">INPUT</span>
+      </h4>
+              </div>
+                
+                <select class="form-select form-select-lg mb-3" aria-label="Default dataset" style="
+    margin-top: 15%;
+    margin-left: -32%;
+">
+  <option value="1">CrisisMMD</option>
+  
+</select>
+                <div class="col-xs- 6" style="margin-left: -150px;"><div class="mini-box mt-0 ">
+                  {% if i=="0" %}
+                  <a href="#" class="stretched-link" onclick="addBlur()">
+                  <div class="card flex-row"  id="img1" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive" id="blurimg" height="138" width="134" src="{{ url_for('static', filename=img1[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt">{{text1[index]}}</p>
+  </div>
+</div>
+</a>
+ <a href="#" class="stretched-link" onclick="addBlur4()" >
+                  <div class="card flex-row"  id="img2" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive" id="blurimg4" height="138" width="134" src="{{ url_for('static', filename=img2[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt4" style="margin-left: 120px;margin-top: -132px;">{{text2[index]}}</p>
+  </div>
+</div>
+</a>
+ <a href="#" class="stretched-link" onclick="addBlur8()" >
+                  <div class="card flex-row"  id="img3" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive" id="blurimg8" height="138" width="134" src="{{ url_for('static', filename=img3[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt8" style="margin-left: 120px;margin-top: -132px;">{{text3[index]}}</p>
+  </div>
+</div>
+</a>
+{% else %}
+<a href="#" class="stretched-link" onclick="addBlur()">
+                  <div class="card flex-row"  id="img1" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg" height="138" width="134" src="{{ url_for('static', filename=img1[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" style="filter: blur(3px);" id="blurimgt" >{{text1[index]}}</p>
+  </div>
+</div>
+</a>
+ <a href="#" class="stretched-link" onclick="addBlur4()" >
+                  <div class="card flex-row"  id="img2" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg4" height="138" width="134" src="{{ url_for('static', filename=img2[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt4" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);">{{text2[index]}}</p>
+  </div>
+</div>
+</a>
+ <a href="#" class="stretched-link" onclick="addBlur8()" >
+                  <div class="card flex-row"  id="img3" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg8" height="138" width="134" src="{{ url_for('static', filename=img3[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt8" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);">{{text3[index]}}</p>
+  </div>
+</div>
+</a>
+{% endif %}
+         </div>
+     </div>
+                <div class="col-xs-6" style="margin-left: -150px;"><div class="mini-box mt-0" >
+                  {% if i=="1" %}
+                  <a href="#" class="stretched-link" onclick="addBlur1()">
+                   <div class="card flex-row"  id="img4" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive" id="blurimg1"  height="138" width="134" src="{{ url_for('static', filename=img1[index+1]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"   >
+    <p class="card-text" id="blurimgt1">{{text1[index+1]}}</p>
+  </div>
+</div>
+</a>                                 
+<a href="#" class="stretched-link" onclick="addBlur5()" >
+                   <div class="card flex-row"  id="img5" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive"  id="blurimg5" height="138" width="134" src="{{ url_for('static', filename=img2[index+1]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" id="blurimgt5" style="margin-left: 120px;margin-top: -132px;">{{text2[index+1]}}</p>
+  </div>
+</div>
+</a>                   
+<a href="#" class="stretched-link" onclick="addBlur9()" >
+                   <div class="card flex-row"  id="img6" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive"   id="blurimg9" height="138" width="134" src="{{ url_for('static', filename=img3[index+1]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" id="blurimgt9" style="margin-left: 120px;margin-top: -132px;">{{text3[index+1]}}</p>
+  </div>
+</div>
+</a>
+{% else %}
+  <a href="#" class="stretched-link" onclick="addBlur1()">
+                   <div class="card flex-row"  id="img4" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive" id="blurimg1" style="filter: blur(3px);" height="138" width="134" src="{{ url_for('static', filename=img1[index+1]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" style="filter: blur(3px);" id="blurimgt1">{{text1[index+1]}}</p>
+  </div>
+</div>
+</a>                                 
+<a href="#" class="stretched-link" onclick="addBlur5()" >
+                   <div class="card flex-row"  id="img5" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg5" height="138" width="134" src="{{ url_for('static', filename=img2[index+1]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" id="blurimgt5" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);">{{text2[index+1]}}</p>
+  </div>
+</div>
+</a>                   
+<a href="#" class="stretched-link" onclick="addBlur9()" >
+                   <div class="card flex-row"  id="img6" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive"  style="filter: blur(3px);" id="blurimg9" height="138" width="134" src="{{ url_for('static', filename=img3[index+1]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt9" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);">{{text3[index+1]}}</p>
+  </div>
+</div>
+</a>
+{% endif %}                 
+</div>
+</div>
+</div>
+ <div class="row preview-holder ">
+                <div class="col-xs-6" style="margin-left: -150px;"><div class="mini-box mt-0 ">
+                  {% if i=="2" %}
+                  <a href="#" class="stretched-link" onclick="addBlur2()">
+
+                   <div class="card flex-row"  id="img7" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive"  id="blurimg2" height="138" width="134" src="{{ url_for('static', filename=img1[index+2]) }}"/>
+  <div class="card-body" style="margin-top: -12px;">
+    <p class="card-text" id="blurimgt2">{{text1[index+2]}}</p>
+  </div>
+</div>
+</a>
+ <a href="#" class="stretched-link" onclick="addBlur6()" >
+
+                   <div class="card flex-row"  id="img8" style="width: 268px;height: 139px; display: None;" >
+                    <img class="card-img-left example-card-img-responsive"  id="blurimg6" height="138" width="134" src="{{ url_for('static', filename=img2[index+2]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" id="blurimgt6" style="margin-left: 120px;margin-top: -132px;">{{text2[index+2]}}</p>
+  </div>
+</div>
+</a> 
+<a href="#" class="stretched-link" onclick="addBlur10()" >
+
+                   <div class="card flex-row"  id="img9" style="width: 268px;height: 139px; display: None;" >
+                    <img class="card-img-left example-card-img-responsive"  id="blurimg10" height="138" width="134" src="{{ url_for('static', filename=img3[index+2]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" style="margin-left: 120px;margin-top: -132px;" id="blurimgt10">{{text3[index+2]}}</p>
+  </div>
+</div>
+</a>  
+{% else %}
+<a href="#" class="stretched-link" onclick="addBlur2()">
+
+                   <div class="card flex-row"  id="img7" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg2" height="138" width="134" src="{{ url_for('static', filename=img1[index+2]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" style="filter: blur(3px);" id="blurimgt2">{{text1[index+2]}}</p>
+  </div>
+</div>
+</a>
+ <a href="#" class="stretched-link" onclick="addBlur6()" >
+
+                   <div class="card flex-row"  id="img8" style="width: 268px;height: 139px; display: None;" >
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg6" height="138" width="134" src="{{ url_for('static', filename=img2[index+2]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt6" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);">{{text2[index+2]}}</p>
+  </div>
+</div>
+</a> 
+<a href="#" class="stretched-link" onclick="addBlur10()" >
+
+                   <div class="card flex-row"  id="img9" style="width: 268px;height: 139px; display: None;" >
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg10" height="138" width="134" src="{{ url_for('static', filename=img3[index+2]) }}"/>
+  <div class="card-body" style="margin-top: -12px;">
+    <p class="card-text" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);" id="blurimgt10">{{text3[index+2]}}</p>
+  </div>
+</div>
+</a>
+{% endif %}
+
+         </div>
+     </div>
+                <div class="col-xs-6" style="margin-left: -150px;"><div class="mini-box mt-0 "> 
+                  {% if i=="3" %}
+                <a href="#" class="stretched-link" onclick="addBlur3()">
+                 <div class="card flex-row"  id="img10" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive"  id="blurimg3" height="138" width="134" src="{{ url_for('static', filename=img1[index+3]) }}"/>
+  <div class="card-body" style="margin-top: -12px;">
+    <p class="card-text" id="blurimgt3">{{text1[index+3]}}</p>
+  </div>
+</div>
+</a>
+<a href="#" class="stretched-link" onclick="addBlur7()">
+                 <div class="card flex-row"  id="img11" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive"  id="blurimg7" height="138" width="134" src="{{ url_for('static', filename=img2[index+3]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" id="blurimgt7" style="margin-left: 120px;margin-top: -132px;">{{text2[index+3]}}</p>
+  </div>
+</div>
+</a>
+<a href="#" class="stretched-link" onclick="addBlur11()">
+                 <div class="card flex-row"  id="img12" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive"  id="blurimg11" height="138" width="134" src="{{ url_for('static', filename=img3[index+3]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" style="margin-left: 120px;margin-top: -132px;" id="blurimgt11">{{text3[index+3]}}</p>
+  </div>
+</div>
+</a>
+{% else %}
+<a href="#" class="stretched-link" onclick="addBlur3()">
+                 <div class="card flex-row"  id="img10" style="width: 268px;height: 139px;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg3" height="138" width="134" src="{{ url_for('static', filename=img1[index+3]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" style="filter: blur(3px);" id="blurimgt3">{{text1[index+3]}}</p>
+  </div>
+</div>
+</a>
+<a href="#" class="stretched-link" onclick="addBlur7()">
+                 <div class="card flex-row"  id="img11" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg7" height="138" width="134" src="{{ url_for('static', filename=img2[index+3]) }}"/>
+  <div class="card-body" style="margin-top: -12px;">
+    <p class="card-text" id="blurimgt7" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);">{{text2[index+3]}}</p>
+  </div>
+</div>
+</a>
+<a href="#" class="stretched-link" onclick="addBlur11()">
+                 <div class="card flex-row"  id="img12" style="width: 268px;height: 139px; display: None;">
+                    <img class="card-img-left example-card-img-responsive" style="filter: blur(3px);" id="blurimg11" height="138" width="134" src="{{ url_for('static', filename=img3[index+3]) }}"/>
+  <div class="card-body" style="margin-top: -12px;"  >
+    <p class="card-text" id="blurimgt11" style="margin-left: 120px;margin-top: -132px;filter: blur(3px);">{{text3[index+3]}}</p>
+  </div>
+</div>
+</a>
+{% endif %}
+</div>
+</div>
+</div>
+<div class="row preview-holder ">
+	<div class="col-xs-9"><div class="mini-box mt-0"></div></div>
+</div>
+<div class="row " style="margin-left: -37px;">
+	<div class="col-xs-9"><div class="mini-box mt-0">
+		<a href="/"><button type="button" class="btn btn-secondary" style="margin-left: -30%;">Refresh</button></a>
+	</div></div>
+</div>
+<div class="row preview-holder ">
+  <div class="col-xs-9"><div class="mini-box mt-0"></div></div>
+</div>
+        </div>
+        
+<div class="col-xs-4 mt-0">
+  <div class="row" id="box-search" style="margin-left: -64px;margin-top: -19px;margin-bottom: 10px;">
+    <h4 style="font-size: 1.1rem;">
+        <span style="color: white; margin-left: 215px;">MODEL</span>
+      </h4>
+  </div>
+<div class="row" id="box-search" style="margin-left: -87px;">
+    <div class="thumbnail cont text-left"  >
+    	
+        <img src="static/Capture.PNG" alt="" onclick="showhide()" height="200" width="600" class="rounded image" >
+        <div class="caption">
+            <h5 style="margin-top: -23%;">Model 1</h5>
+        </div>
+        {% if l1!=0 %}
+        <div class="row " id="middle1" style="margin-left:38px; display: None">
+  <div class="col-md-6">
+    <!-- Your first column here -->
+    <img src="static/case1.png" onclick="showhide()"  alt=""class="rounded" style=" 
+    margin-left: -48px;
+    margin-top: -200px;
+    height: 200px;
+    width: 300px;"
+ >
+  </div>
+  <div class="col-md-6">
+    
+    <div  style="margin-top: -201px;margin-left: 247px;">
+        <div class="text" onclick="showhide()" id="barchart_values1"></div>
+        </div> 
+    <!-- Your second column here -->
+  </div>
+</div>
+        {% endif %}
+        
+    </div>
+</div>
+<div class="row" id="box-search" style="margin-top: 20px; margin-left: -87px;">
+    <div class="thumbnail cont text-left">
+    	
+        <img src="static/Capture1.PNG" alt="" onclick="showhide1()" height="200" width="600" class="rounded image" >
+        <div class="caption">
+            <h5 style="margin-top: -23%;">Model 2</h5>
+        </div>
+        {% if l2!=0 %}
+        <div class="row" id="middle2" style="margin-left:0px; display: None;" >
+          <div class="col-md-6">
+  <img src="static/case2.png" alt="" onclick="showhide1()" class="rounded" style="
+    height: 200px;
+    width: 300px;
+    margin-top: -200px;
+    margin-left: -15px;
+    ">
+  </div>
+  <div class="col-md-6">
+
+    <div  style="margin-top: -201px;margin-left: 285px;">
+        <div class="text" onclick="showhide1()" id="barchart_values2"></div>
+        </div> 
+    <!-- Your second column here -->
+  </div>
+</div>
+        
+        
+        {% endif %}
+        
+    </div>
+</div>
+<div class="row" id="box-search" style="margin-top: 20px; margin-left: -87px;">
+    <div class="thumbnail cont text-left">
+    	
+        <img src="static/capture3.PNG" alt="" onclick="showhide2()" height="200" width="600" class="rounded image" >
+        <div class="caption">
+            <h5 style="margin-top: -23%;">Model 3</h5>
+        </div>
+        {% if l3!=0 %}
+        <div class="row" id="middle3" style="margin-left:36px; display: None;">
+  <div class="col-md-6">
+    <!-- Your first column here -->
+    <img src="static/case3.png" alt="" onclick="showhide2()" class="rounded" style=" 
+    margin-left: -51px;
+    margin-top: -199px;
+    height: 200px;
+    width: 300px;"
+ >
+  </div>
+  <div class="col-md-6">
+    
+    <div  style="margin-top: -200px;margin-left: 246px;">
+        <div class="text"  onclick="showhide2()" id="barchart_values3"></div>
+        </div> 
+    <!-- Your second column here -->
+  </div>
+</div>
+        {% endif %}
+        
+    </div>
+</div>
+
+<form id="my_form" action="/predict" method="POST">
+<div class="row" id="box-search" style="margin-left: -75px;">
+
+  <div class="form-check form-check-inline">
+  {% if radio==1 %}
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" onclick="showtext()" value="option1" checked="checked" />
+  <label class="form-check-label" for="inlineRadio2"><h5 style="color: white; font-size: 1.1rem;">Informative</h5></label>
+  {% else %}
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" onclick="showtext()" value="option1" />
+  <label class="form-check-label" for="inlineRadio2"><h5 style="color: white; font-size: 1.1rem;">Informative</h5></label>
+  {% endif %}
+</div>
+
+	<div class="form-check form-check-inline">
+  {% if radio==2 %}  
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" onclick="showtext1()" value="option2" checked="checked" />
+  <label class="form-check-label" for="inlineRadio1"><h5 style="color: white; font-size: 1.1rem;">Damage</h5></label>
+  {% else %}
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" onclick="showtext1()" value="option2" />
+  <label class="form-check-label" for="inlineRadio1"><h5 style="color: white; font-size: 1.1rem;">Damage</h5></label>
+  {% endif %}
+</div>
+
+
+
+<div class="form-check form-check-inline">
+  {% if radio==3 %}
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" onclick="showtext2()" value="option3" checked="checked" />
+  <label class="form-check-label" for="inlineRadio3"><h5 style="color: white; font-size: 1.1rem;">Severity</h5></label>
+  {% else %}
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" onclick="showtext2()"value="option3"  />
+  <label class="form-check-label" for="inlineRadio3"><h5 style="color: white; font-size: 1.1rem;">Severity</h5></label>
+  {% endif %}
+</div>
+</div>
+<div class="row">
+<div class="col">  
+<div class="text-center" style="padding-top: 30; margin-left: -8%;">
+    <button type="submit" class="btn btn-default">Predict</button>
+</div>
+</div>
+
+{% if len!=0 %}
+<div class="col">  
+<div class="text-center" style="padding-top: 30; margin-left: -8%;">
+    <button type="submit" class="btn btn-default" formaction="/details">Result</button>
+</div>
+</div>
+{% endif %}
+{% if len!=0 %}
+<div class="col">  
+<div class="text-center" style="padding-top: 30; margin-left: -8%;">
+    <button type="submit" class="btn btn-default" formaction="/visualize">Visualize</button>
+</div>
+</div>
+{% endif %}
+</div>
+
+<input type="hidden" id="custId" class="custId" name="index1" value={{i}} >
+<input type="hidden" id="custId1" name="index" value={{index}} >
+<textarea id="custId2" name="index2" hidden>{{result}}</textarea>
+<input type="hidden" id="custId3" name="index3" value={{output[0]}} >
+</form>
+</div>
+ 
+<div class="col-xs-2">
+  <img src="static/classification1.png" class="rounded " height="434" width="100" style="margin-left: 56px; margin-top: 155px;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 100" style="
+    margin-top: -397px; margin-left: 15px;">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+    refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+    </marker>
+  </defs>
+  <line x1="0" y1="50" x2="250" y2="50" stroke="white" 
+  stroke-width="8" marker-end="url(#arrowhead)"  />
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 100" style="
+    margin-top: -236px; margin-left: 15px;">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+    refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+    </marker>
+  </defs>
+  <line x1="0" y1="50" x2="250" y2="50" stroke="white" 
+  stroke-width="8" marker-end="url(#arrowhead)"  />
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1540 100" style="
+    margin-top: -52px; margin-left: 15px;">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+    refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="white"/>
+    </marker>
+  </defs>
+  <line x1="0" y1="50" x2="250" y2="50" stroke="white" 
+  stroke-width="8" marker-end="url(#arrowhead)"  />
+</svg>
+  </div>
+<div class="col-xs-6" style="margin-left:-44px;">
+
+	
+   {% if len!=0 %} 
+   <div class="row" style="margin-left: 90px; margin-top:4px; ">
+  <h4 style="font-size: 1.1rem;">
+        <span style="color: white;">RESULT</span>
+      </h4></div> 
+   <div class="row">
+	<div id="piechart_3d" style="margin-right: -372px;width: 599px;height: 309px;margin-top: 81px;margin-left: -64px; " class="center" ></div>
+</div>
+<div class="row">
+  <h4 style="color: white; font-size: 1rem; margin-left: 93px;"><span style="text-transform:uppercase;">{{output[0]}}</span></h4>
+  
+</div>
+{% endif %}
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}

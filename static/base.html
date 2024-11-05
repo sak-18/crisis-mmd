@@ -1,0 +1,794 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AI Demo</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">    
+      <style>
+        html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    background-size: cover;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+        /* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-box {
+  background-color: transparent;
+  width: 153px;
+  height: 153px;
+  
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}h4,span{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+p{
+  font-size: 0.55rem;
+}
+
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-box-front,
+.flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-box-front {
+  background-color: #13315c;
+  color: black;
+}
+
+/* Style the back side */
+.flip-box-back {
+  background-color: #13315c;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+        .cloud{ 
+   padding: 1rem;
+  width: 148px;
+  box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11),
+    0 5px 15px 0 rgba(0,0,0,0.08);
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  
+  border-left: 0 solid #00ff99;
+  transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
+}
+        h4{
+            padding-top: 10;
+            font-size: 0.7rem;
+            font-family: Baskerville, Baskerville Old Face, Garamond, Times New Roman, serif;
+            color: black;
+        }
+        h5{
+            font-size: 1rem;
+            font-family: Baskerville, Baskerville Old Face, Garamond, Times New Roman, serif;
+        }
+             
+        .mt-0 {
+  margin-top: 1.5rem !important;
+  margin-left: 1.2rem !important;
+  
+}
+.mt-1 {
+  
+  margin-left: 5.2rem !important;
+}
+
+   
+   .form-check{
+    padding-top: 20;
+    border-radius: 50%;
+    padding-left: 70;
+   }
+   .form-check-input{
+     transform: scale(1.2);
+   }
+   img .pie {    
+    border-radius: 50%;
+    padding: 3px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 0 7px #fff, 
+                0 0 0 8px #ddd;
+}     
+ .thumbnail {
+    position: relative;
+}       
+.preview-holder {
+  display: inline-block;
+  
+}
+.center {
+  padding-top: 80;
+}
+
+.caption {
+    position: absolute;
+    top: 45%;
+    left: 1%;
+    width: 100%;
+}
+h4{
+  width: 0;
+  min-width: 100%;
+}
+
+.cont {
+  position: relative;
+  width: 65%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+
+
+.cont:hover .image {
+  opacity: 0.3;
+}
+
+.cont:hover .middle {
+  opacity: 1;
+}
+.ftco-navbar-light {
+    background: # 000000 !important;
+    z-index: 3;
+    padding: 0;
+}
+.footer-heart{text-align:center;font-family: open sans, sans-serif;}
+
+.footer-heart a{border-bottom: 1px solid #453886;color: #453886;padding-bottom: .25em; text-decoration: none;}
+
+.footer-heart a:hover{color:#2196f3; background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23453886' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-size: 20%;
+  border-bottom: 0;
+  padding-bottom: .3em;
+  text-decoration: none;}
+
+.emoji{vertical-align: middle;}
+</style>
+<script type="text/javascript">
+ 
+
+
+function addBlur() {
+  let hidden = document.getElementById('blurimg');
+  let hidden1 = document.getElementById('blurimg1');
+  let hidden2 = document.getElementById('blurimg2');
+  let hidden3 = document.getElementById('blurimg3');
+  let hidden4 = document.getElementById('blurimgt');
+  let hidden5 = document.getElementById('blurimgt1');
+  let hidden6 = document.getElementById('blurimgt2');
+  let hidden7 = document.getElementById('blurimgt3');
+  let h = document.getElementById('custId');
+
+  h.style.value="0";
+  hidden.style.filter = 'blur(0px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(0px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+
+function showhide() {
+  var c = document.getElementById("middle1");
+  if (c.style.display === "none") {
+    c.style.display = "block";
+    
+  } else {
+  
+    c.style.display = "none";
+  }
+  
+}
+
+function showhide1() {
+  var c = document.getElementById("middle2");
+  if (c.style.display === "none") {
+    c.style.display = "block";
+    
+  } else {
+  
+    c.style.display = "none";
+  }
+}
+function showhide2() {
+  var c = document.getElementById("middle3");
+  
+  
+  if (c.style.display === "none") {
+    c.style.display = "block";
+    
+  } else {
+  
+    c.style.display = "none";
+  }
+  
+}
+function addBlur1() {
+  let hidden = document.getElementById('blurimg');
+  
+  let hidden1 = document.getElementById('blurimg1');
+  let hidden2 = document.getElementById('blurimg2');
+  let hidden3 = document.getElementById('blurimg3');
+  let hidden4 = document.getElementById('blurimgt');
+  
+  let hidden5 = document.getElementById('blurimgt1');
+  let hidden6 = document.getElementById('blurimgt2');
+  let hidden7 = document.getElementById('blurimgt3');
+  let h = document.getElementById('custId');
+  h.style.value="1";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(0px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(0px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+
+function addBlur2() {
+  let hidden = document.getElementById('blurimg');
+  
+  let hidden1 = document.getElementById('blurimg1');
+  let hidden2 = document.getElementById('blurimg2');
+  let hidden3 = document.getElementById('blurimg3');
+  let hidden4 = document.getElementById('blurimgt');
+  
+  let hidden5 = document.getElementById('blurimgt1');
+  let hidden6 = document.getElementById('blurimgt2');
+  let hidden7 = document.getElementById('blurimgt3');
+  let h = document.getElementById('custId');
+  h.style.value="2";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(0px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(0px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+
+function showtext() {
+  let hidden1 = document.getElementById('img1');
+  let hidden2 = document.getElementById('img2');
+  let hidden3 = document.getElementById('img3');
+  let hidden4 = document.getElementById('img4');
+  let hidden5 = document.getElementById('img5');
+  let hidden6 = document.getElementById('img6');
+  let hidden7 = document.getElementById('img7');
+  let hidden8 = document.getElementById('img8');
+  let hidden9 = document.getElementById('img9');
+  let hidden10 = document.getElementById('img10');
+  let hidden11 = document.getElementById('img11');
+  let hidden12= document.getElementById('img12');
+  hidden1.style.display = "block";
+  hidden2.style.display = "none";
+  hidden3.style.display = "none";
+  hidden4.style.display = "block";
+  hidden5.style.display = "none";
+  hidden6.style.display = "none";
+  hidden7.style.display = "block";
+  hidden8.style.display = "none";
+  hidden9.style.display = "none";
+  hidden10.style.display = "block";
+  hidden11.style.display = "none";
+  hidden12.style.display = "none";
+  
+  
+}
+
+
+function showtext1() {
+  let hidden1 = document.getElementById('img1');
+  let hidden2 = document.getElementById('img2');
+  let hidden3 = document.getElementById('img3');
+  let hidden4 = document.getElementById('img4');
+  let hidden5 = document.getElementById('img5');
+  let hidden6 = document.getElementById('img6');
+  let hidden7 = document.getElementById('img7');
+  let hidden8 = document.getElementById('img8');
+  let hidden9 = document.getElementById('img9');
+  let hidden10 = document.getElementById('img10');
+  let hidden11 = document.getElementById('img11');
+  let hidden12= document.getElementById('img12');
+  hidden2.style.display = "block";
+  hidden1.style.display = "none";
+  hidden3.style.display = "none";
+  hidden5.style.display = "block";
+  hidden4.style.display = "none";
+  hidden6.style.display = "none";
+  hidden8.style.display = "block";
+  hidden7.style.display = "none";
+  hidden9.style.display = "none";
+  hidden11.style.display = "block";
+  hidden10.style.display = "none";
+  hidden12.style.display = "none";
+  
+  
+ 
+  
+}
+
+
+function showtext2() {
+  let hidden1 = document.getElementById('img1');
+  let hidden2 = document.getElementById('img2');
+  let hidden3 = document.getElementById('img3');
+  let hidden4 = document.getElementById('img4');
+  let hidden5 = document.getElementById('img5');
+  let hidden6 = document.getElementById('img6');
+  let hidden7 = document.getElementById('img7');
+  let hidden8 = document.getElementById('img8');
+  let hidden9 = document.getElementById('img9');
+  let hidden10 = document.getElementById('img10');
+  let hidden11 = document.getElementById('img11');
+  let hidden12= document.getElementById('img12');
+  hidden3.style.display = "block";
+  hidden1.style.display = "none";
+  hidden2.style.display = "none";
+  hidden6.style.display = "block";
+  hidden4.style.display = "none";
+  hidden5.style.display = "none";
+  hidden9.style.display = "block";
+  hidden7.style.display = "none";
+  hidden8.style.display = "none";
+  hidden12.style.display = "block";
+  hidden10.style.display = "none";
+  hidden11.style.display = "none";
+  
+ 
+  
+}
+
+function addBlur3() {
+  let hidden = document.getElementById('blurimg');
+  
+  let hidden1 = document.getElementById('blurimg1');
+  let hidden2 = document.getElementById('blurimg2');
+  let hidden3 = document.getElementById('blurimg3');
+  let hidden4 = document.getElementById('blurimgt');
+  
+  let hidden5 = document.getElementById('blurimgt1');
+  let hidden6 = document.getElementById('blurimgt2');
+  let hidden7 = document.getElementById('blurimgt3');
+  let h = document.getElementById('custId');
+  h.style.value="3";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(0px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(0px)';
+}
+
+function addBlur4() {
+  let hidden = document.getElementById('blurimg4');
+  
+  let hidden1 = document.getElementById('blurimg5');
+  let hidden2 = document.getElementById('blurimg6');
+  let hidden3 = document.getElementById('blurimg7');
+  let hidden4 = document.getElementById('blurimgt4');
+  
+  let hidden5 = document.getElementById('blurimgt5');
+  let hidden6 = document.getElementById('blurimgt6');
+  let hidden7 = document.getElementById('blurimgt7');
+  let h = document.getElementById('custId');
+  h.style.value="0";
+  hidden.style.filter = 'blur(0px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(0px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(3px)';
+  
+}
+function addBlur5() {
+  let hidden = document.getElementById('blurimg4');
+  
+  let hidden1 = document.getElementById('blurimg5');
+  let hidden2 = document.getElementById('blurimg6');
+  let hidden3 = document.getElementById('blurimg7');
+  let hidden4 = document.getElementById('blurimgt4');
+  
+  let hidden5 = document.getElementById('blurimgt5');
+  let hidden6 = document.getElementById('blurimgt6');
+  let hidden7 = document.getElementById('blurimgt7');
+  let h = document.getElementById('custId');
+  h.style.value="1";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(0px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(0px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+function addBlur6() {
+ let hidden = document.getElementById('blurimg4');
+  
+  let hidden1 = document.getElementById('blurimg5');
+  let hidden2 = document.getElementById('blurimg6');
+  let hidden3 = document.getElementById('blurimg7');
+  let hidden4 = document.getElementById('blurimgt4');
+  
+  let hidden5 = document.getElementById('blurimgt5');
+  let hidden6 = document.getElementById('blurimgt6');
+  let hidden7 = document.getElementById('blurimgt7');
+  let h = document.getElementById('custId');
+  h.style.value="2";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(0px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(0px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+
+function addBlur7() {
+  let hidden = document.getElementById('blurimg4');
+  
+  let hidden1 = document.getElementById('blurimg5');
+  let hidden2 = document.getElementById('blurimg6');
+  let hidden3 = document.getElementById('blurimg7');
+  let hidden4 = document.getElementById('blurimgt4');
+  
+  let hidden5 = document.getElementById('blurimgt5');
+  let hidden6 = document.getElementById('blurimgt6');
+  let hidden7 = document.getElementById('blurimgt7');
+  let h = document.getElementById('custId');
+  h.style.value="3";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(0px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(0px)';
+}
+
+
+function addBlur8() {
+  let hidden = document.getElementById('blurimg8');
+  
+  let hidden1 = document.getElementById('blurimg9');
+  let hidden2 = document.getElementById('blurimg10');
+  let hidden3 = document.getElementById('blurimg11');
+  let hidden4 = document.getElementById('blurimgt8');
+  
+  let hidden5 = document.getElementById('blurimgt9');
+  let hidden6 = document.getElementById('blurimgt10');
+  let hidden7 = document.getElementById('blurimgt11');
+  let h = document.getElementById('custId');
+  h.style.value="0";
+  hidden.style.filter = 'blur(0px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(0px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+function addBlur9() {
+  let hidden = document.getElementById('blurimg8');
+  
+  let hidden1 = document.getElementById('blurimg9');
+  let hidden2 = document.getElementById('blurimg10');
+  let hidden3 = document.getElementById('blurimg11');
+  let hidden4 = document.getElementById('blurimgt8');
+  
+  let hidden5 = document.getElementById('blurimgt9');
+  let hidden6 = document.getElementById('blurimgt10');
+  let hidden7 = document.getElementById('blurimgt11');
+  let h = document.getElementById('custId');
+  h.style.value="1";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(0px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(0px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+function addBlur10() {
+  let hidden = document.getElementById('blurimg8');
+  
+  let hidden1 = document.getElementById('blurimg9');
+  let hidden2 = document.getElementById('blurimg10');
+  let hidden3 = document.getElementById('blurimg11');
+  let hidden4 = document.getElementById('blurimgt8');
+  
+  let hidden5 = document.getElementById('blurimgt9');
+  let hidden6 = document.getElementById('blurimgt10');
+  let hidden7 = document.getElementById('blurimgt11');
+  let h = document.getElementById('custId');
+  h.style.value="2";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(0px)';
+  hidden3.style.filter = 'blur(3px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(0px)';
+  hidden7.style.filter = 'blur(3px)';
+}
+
+function addBlur11() {
+  let hidden = document.getElementById('blurimg8');
+  
+  let hidden1 = document.getElementById('blurimg9');
+  let hidden2 = document.getElementById('blurimg10');
+  let hidden3 = document.getElementById('blurimg11');
+  let hidden4 = document.getElementById('blurimgt8');
+  
+  let hidden5 = document.getElementById('blurimgt9');
+  let hidden6 = document.getElementById('blurimgt10');
+  let hidden7 = document.getElementById('blurimgt11');
+  let h = document.getElementById('custId');
+  h.style.value="3";
+  hidden.style.filter = 'blur(3px)';
+  hidden1.style.filter = 'blur(3px)';
+  hidden2.style.filter = 'blur(3px)';
+  hidden3.style.filter = 'blur(0px)';
+  hidden4.style.filter = 'blur(3px)';
+  hidden5.style.filter = 'blur(3px)';
+  hidden6.style.filter = 'blur(3px)';
+  hidden7.style.filter = 'blur(0px)';
+}
+
+    google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(
+      function (){
+        //console.log({{len}});
+        var data = google.visualization.arrayToDataTable([
+      {% if len !=0 %}    
+      {% for key, value in result.items() %}
+        
+          ['{{ key }}', {{ value }}],
+        
+      {% endfor %}
+      {% endif %}
+        ],true);
+        
+        var options = {
+          is3D: true,
+          backgroundColor: 'transparent',
+          chartArea: { width: "80%", height: "80%" },
+          pieHole: 0.5,
+          legend: {textStyle: {color: 'white'}},
+        
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+       
+      });
+    
+google.charts.setOnLoadCallback(
+    function () {
+      //setTimeout(()=>{console.log({{l1}})},1000);
+      console.log({{l1}});
+      //console.log({{m1}},{{m2}},{{m3}});
+      var data = google.visualization.arrayToDataTable([
+        {% if l1 !=0 %}    
+      {% for key, value in m1.items() %}
+        
+          ['{{ key }}', {{ value }}],
+        
+      {% endfor %}
+      {% endif %}
+        ],true);
+
+      var data1 = google.visualization.arrayToDataTable([
+        {% if l2 !=0 %}    
+      {% for key, value in m2.items() %}
+        
+          ['{{ key }}', {{ value }}],
+        
+      {% endfor %}
+      {% endif %}
+        ],true);
+
+      var data2 = google.visualization.arrayToDataTable([
+        {% if l3 !=0 %}    
+      {% for key, value in m3.items() %}
+        
+          ['{{ key }}', {{ value }}],
+        
+      {% endfor %}
+      {% endif %}
+        ],true);
+
+      console.log(data,data1,data2);
+      var options = {
+        backgroundColor: 'transparent',
+        is3D: true,
+       chartArea: { width: "80%", height: "80%" },
+          pieHole: 0.5,
+        legend: 'none',
+
+      };
+      var options1 = {
+          is3D: true,
+          backgroundColor: 'transparent',
+          chartArea: { width: "80%", height: "80%" },
+          pieHole: 0.5,
+          legend: {textStyle: {color: 'white'}},
+        
+        };
+      var chart = new google.visualization.PieChart(document.getElementById("piechart_3d1"));
+      chart.draw(data, options);
+      var chart1 = new google.visualization.PieChart(document.getElementById("piechart_3d2"));
+      chart1.draw(data1, options);
+      var chart2 = new google.visualization.PieChart(document.getElementById("piechart_3d3"));
+      chart2.draw(data2, options1);
+  }  );  
+
+google.charts.setOnLoadCallback(
+    function () {
+      //setTimeout(()=>{console.log({{l1}})},1000);
+      console.log({{l1}});
+      //console.log({{m1}},{{m2}},{{m3}});
+      var data = google.visualization.arrayToDataTable([
+        {% if l1 !=0 %}    
+      {% for key, value in m1.items() %}
+        
+          ['{{ key }}', {{ value }}],
+        
+      {% endfor %}
+      {% endif %}
+        ],true);
+
+      var data1 = google.visualization.arrayToDataTable([
+        {% if l2 !=0 %}    
+      {% for key, value in m2.items() %}
+        
+          ['{{ key }}', {{ value }}],
+        
+      {% endfor %}
+      {% endif %}
+        ],true);
+
+      var data2 = google.visualization.arrayToDataTable([
+        {% if l3 !=0 %}    
+      {% for key, value in m3.items() %}
+        
+          ['{{ key }}', {{ value }}],
+        
+      {% endfor %}
+      {% endif %}
+        ],true);
+
+      console.log(data,data1,data2);
+      var options = {
+        title:"Result",
+       
+        is3D: true,
+       'height':200,
+       'width':310,
+        legend: 'none',
+
+      };
+     
+      var chart = new google.visualization.PieChart(document.getElementById("barchart_values1"));
+      chart.draw(data, options);
+      var chart1 = new google.visualization.PieChart(document.getElementById("barchart_values2"));
+      chart1.draw(data1, options);
+      var chart2 = new google.visualization.PieChart(document.getElementById("barchart_values3"));
+      chart2.draw(data2, options);
+  }  );  
+
+function showStuff1() {
+  let hidden = document.getElementById('hidden1');
+  if (hidden.style.display == "none") {
+    hidden.style.display = "block"
+  } else {
+    hidden.style.display = "none"
+  }
+}
+function showStuff2() {
+  let hidden = document.getElementById('hidden2');
+  if (hidden.style.display == "none") {
+    hidden.style.display = "block"
+  } else {
+    hidden.style.display = "none"
+  }
+}
+function showStuff3() {
+  let hidden = document.getElementById('hidden3');
+  if (hidden.style.display == "none") {
+    hidden.style.display = "block"
+  } else {
+    hidden.style.display = "none"
+  }
+}
+function showStuff4() {
+  let hidden = document.getElementById('hidden4');
+  if (hidden.style.display == "none") {
+    hidden.style.display = "block"
+  } else {
+    hidden.style.display = "none"
+  }
+}
+
+</script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark ftco-navbar-light">
+        <div class="container">
+<nav class="navbar navbar-expand-lg ftco_navbar " id="ftco-navbar">
+<div class="container">
+<a class="navbar-brand" href="index.html" style="font-family: Baskerville, Baskerville Old Face, Garamond, Times New Roman, serif; margin-left: -83px;">CRISISMMD</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="fa fa-bars"></span> Menu
+</button>
+
+</div>
+</nav>
+
+</div>
+    </nav>
+    <div style="background-image: url('/static/bg.png'); background-size: 100%;">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+
+<footer >
+    <p class="footer-heart ">
+  Made with <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
+<img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png"></g-emoji> by <a href="https://armin.id">DMML</a>
+</p>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>    
+</footer>
+
+</html>

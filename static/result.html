@@ -1,0 +1,94 @@
+
+
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm" style="margin-top: 6%;margin-left: -10%;">
+                <h4 style="font-size: 1.1rem; margin-left: 22%;">
+        <span style="color: white;">INPUT IMAGE</span>
+      </h4>
+      
+      <div class="card flex-row"  id="img" style="width: 300px;height: 190px; margin-top:80px;">
+                    <img class="card-img-left example-card-img-responsive"  height="190" width="180" src="{{ url_for('static', filename=img[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt" style="font-size: 0.65rem;">{{text[index]}}</p>
+  </div>
+</div>
+    </div>
+    <div class="col-sm" style="margin-top: 6%;margin-left: -2%;">
+      <h4 style="font-size: 1.1rem;margin-left: 48%;">
+        <span style="color: white;">TEXT MODEL</span>
+      </h4>
+      <div id="piechart_3d1" style="margin-right: -372px;width: 599px;height: 309px;margin-top: -36px;margin-left: -45%; " class="center" ></div> 
+      <div class="row">
+  <h4 style="color: white; font-size: 0.8rem; margin-left: 129px;"><span style="text-transform:uppercase;">{{output}}</span></h4>
+  
+</div> 
+    </div>
+    <div class="col-sm" style="margin-top: 6%;margin-left: -2%;">
+      <h4 style="font-size: 1.1rem;margin-left: 34%;">
+        <span style="color: white;">IMAGE MODEL</span>
+      </h4>
+      <div id="piechart_3d2" style="margin-right: -372px;width: 599px;height: 309px;margin-top: -10%;margin-left: -55%; " class="center" ></div> 
+      <div class="row">
+  {% if output1=="informative" or output1=="not_informative" %}
+  <h4 style="color: white; font-size: 0.7rem; margin-left: 36%;"><span style="text-transform:uppercase;">{{output1}}</span></h4>
+{% elif output1=='little_or_no_damage' or output1=='mild_damage' or output1=='severe_damage' %}
+<h4 style="color: white; font-size: 0.7rem; margin-left: 36%;"><span style="text-transform:uppercase;">{{output1}}</span></h4>
+{% else %}
+<h4 style="color: white; font-size: 0.7rem; margin-left: 21%;"><span style="text-transform:uppercase;">{{output1}}</span></h4>
+{% endif %}
+  
+</div>
+  
+    </div>
+     <div class="col-sm" style="margin-top: 6%;margin-left: 3%;">
+      <h4 style="font-size: 1.1rem;margin-left: 0%;">
+        <span style="color: white;">CAUSAL MODEL</span>
+      </h4>
+      <div id="piechart_3d3" style="margin-right: -372px;width: 599px;height: 309px;margin-top: -10%;margin-left: -55%; " class="center" ></div> 
+      <div class="row">
+  <h4 style="color: white; font-size: 0.8rem; margin-left: 43px;"><span style="text-transform:uppercase;">{{output2}}</span></h4>
+  
+</div> 
+    </div>
+  </div>
+<br/>
+  <div class="row">
+    <h4 style="color:white; font-size: 16px; margin-bottom: 2%;">MODEL METRICS FOR COMPLETE DATASET({{model_name}} Task)</h4>
+</div>
+<div class="row">
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        {% for col in column_names %}
+        <th scope="col">{{col}}</th>
+         {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in row_data %}
+          <tr scope="row">
+            {% for col in row %}
+            <td>{{col}}</td>
+            {% endfor %}
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  <div class="row">
+  <div class="text-center" style="margin-top: -6px;margin-left: 44%;margin-bottom: 2%;">
+    <a href="/">
+    <button type="submit" class="btn btn-default" formaction="/">Previous</button>
+  </a>
+</div>
+  
+</div>
+</div>
+
+
+
+
+{% endblock %}

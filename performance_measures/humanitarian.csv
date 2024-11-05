@@ -1,0 +1,4 @@
+﻿Accuracy,Precision,Recall,F1-Score,Model
+70.4,70,70,67.7,Text
+76.8,76.4,76.8,76.3,Image
+81.9,82.1,82,81.6,Mulitmodel

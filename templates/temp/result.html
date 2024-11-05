@@ -1,0 +1,63 @@
+
+
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm" style="margin-top: 6%;margin-left: -10%;">
+                <h4 style="font-size: 1.1rem; margin-left: 22%;">
+        <span style="color: white;">INPUT IMAGE</span>
+      </h4>
+      
+      <div class="card flex-row"  id="img" style="width: 300px;height: 190px; margin-top:166px;">
+                    <img class="card-img-left example-card-img-responsive"  height="190" width="180" src="{{ url_for('static', filename=img[index]) }}"/>
+  <div class="card-body" style="margin-top: -12px;" >
+    <p class="card-text" id="blurimgt" style="font-size: 0.65rem;">{{text[index]}}</p>
+  </div>
+</div>
+    </div>
+    <div class="col-sm" style="margin-top: 6%;margin-left: -2%;">
+      <h4 style="font-size: 1.1rem;margin-left: 27%;">
+        <span style="color: white;">TEXT MODEL</span>
+      </h4>
+      <div id="piechart_3d1" style="margin-right: -372px;width: 599px;height: 309px;margin-top: 81px;margin-left: 0px; " class="center" ></div> 
+      <div class="row">
+  <h4 style="color: white; font-size: 1rem; margin-left: 93px;"><span style="text-transform:uppercase;">{{output}}</span></h4>
+  
+</div> 
+    </div>
+    <div class="col-sm" style="margin-top: 6%;margin-left: -2%;">
+      <h4 style="font-size: 1.1rem;margin-left: 17%;">
+        <span style="color: white;">IMAGE MODEL</span>
+      </h4>
+      <div id="piechart_3d2" style="margin-right: -372px;width: 599px;height: 309px;margin-top: 81px;margin-left: 0px; " class="center" ></div> 
+      <div class="row">
+  <h4 style="color: white; font-size: 0.8rem; margin-left: 93px;"><span style="text-transform:uppercase;">{{output1}}</span></h4>
+  
+</div>
+<div class="row">
+  <div class="text-center" style="padding-top: 30; margin-left: -8%;">
+    <a href="/">
+    <button type="submit" class="btn btn-default" formaction="/">Previous</button>
+  </a>
+</div>
+  
+</div>  
+    </div>
+     <div class="col-sm" style="margin-top: 6%;margin-left: 3%;">
+      <h4 style="font-size: 1.1rem;margin-left: 17%;">
+        <span style="color: white;">Causal MODEL</span>
+      </h4>
+      <div id="piechart_3d3" style="margin-right: -372px;width: 599px;height: 309px;margin-top: 81px;margin-left: 0px; " class="center" ></div> 
+      <div class="row">
+  <h4 style="color: white; font-size: 0.8rem; margin-left: 93px;"><span style="text-transform:uppercase;">{{output2}}</span></h4>
+  
+</div> 
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
