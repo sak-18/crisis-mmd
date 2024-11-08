@@ -4,6 +4,7 @@ __pycache__/
 model/
 env/
 data_image/
+dmd/
 data_dump/
 misc/
 static/data_image/
